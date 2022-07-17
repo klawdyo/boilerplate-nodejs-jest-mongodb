@@ -1,0 +1,56 @@
+version: "3.8"
+networks:
+  backend:
+    driver: "bridge"
+services:
+  mongodb:
+    image: mongo
+    networks:
+      - backend
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=root_db
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=)bTZV9ER0wj)fNKEg]Wf%ki8?%qBfwQ;%$eqF[[HWMjC!t/Q+2S~^:RE>wxm;*B
+    volumes:
+      - ./.dbcache/mongo/data:/data/db
+      - ./docker-compose/mongo-init.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    ports:
+      - 27018:27017
+    restart: unless-stopped
+  # mysql:
+  #   image: mysql:8
+  #   environment:
+  #     MYSQL_ROOT_USER: root
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: db_fundamentos
+  #     MYSQL_USER: u_fundamentos
+  #     MYSQL_PASSWORD: p_fundamentos
+  #   ports:
+  #     - '3306:3306'
+  #   networks:
+  #     - backend
+  #   volumes:
+  #     - ./.dbcache/mysql/data:/data/db
+  #     - ./docker-compose/mysql-init.sql:/data/application/init.sql
+  #   restart: unless-stopped
+  #   command: --default-authentication-plugin=mysql_native_password
+  # postgres:
+  #   image: postgres:13.4
+  #   healthcheck:
+  #     test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root"]
+  #     timeout: 45s
+  #     interval: 10s
+  #     retries: 10
+  #   restart: unless-stopped
+  #   environment:
+  #     - POSTGRES_USER=root
+  #     - POSTGRES_PASSWORD=root
+  #     - APP_DB_USER=docker
+  #     - APP_DB_PASS=docker
+  #     - APP_DB_NAME=docker
+  #   volumes:
+  #     - ./.dbcache/postgresql/data:/docker-entrypoint-initdb.d/
+  #     - ./docker-compose/postgresql-init.sql:/docker-entrypoint-initdb.d/postgresql-init.sql
+  #   ports:
+  #     - 5432:5432

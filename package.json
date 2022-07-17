@@ -1,0 +1,30 @@
+{
+  "name": "login-jwt-tests-jest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/server.js --ignore __tests__",
+    "start": "node src/server.js",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=30000"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.13.0",
+    "factory-girl": "^5.0.4",
+    "faker": "^5.5.3",
+    "helmet": "^4.6.0",
+    "indicative": "^7.4.4",
+    "indicative-utils": "^7.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.11"
+  },
+  "devDependencies": {
+    "jest": "^27.2.1",
+    "nodemon": "^2.0.13",
+    "supertest": "^6.1.6"
+  }
+}

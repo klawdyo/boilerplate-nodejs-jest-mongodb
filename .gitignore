@@ -1,0 +1,4 @@
+node_modules
+.dbcache*
+.env
+__tests__/coverage
